@@ -504,7 +504,7 @@ ynh_systemd_action --service_name="php${phpversion}-fpm" --action=reload
 
 if [ $use_notify_push -eq 1 ]
 then
-    if ! ynh_exec_as "$app" nextcloud php7.3 $final_path/occ notify_push:self-test; then
+    if ! ynh_exec_as "$app" php${phpversion} $final_path/occ notify_push:self-test; then
         ynh_print_warn --message="High Performance Backend is not working correctly, try to repair it or contact YNH support."
     fi
 fi
