@@ -128,6 +128,17 @@ then
 fi
 
 #=================================================
+# CONFIGURE NOTIFY_PUSH APP
+#=================================================
+
+if [ $use_notify_push -eq 1 ]
+then
+    ynh_add_systemd_config --service="${app}-notify-push"
+
+    ynh_systemd_action --service_name="${app}-notify-push" --action=restart
+fi
+
+#=================================================
 # GENERIC FINALISATION
 #=================================================
 # RELOAD NGINX
