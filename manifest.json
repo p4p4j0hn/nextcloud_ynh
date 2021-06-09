@@ -62,7 +62,7 @@
                 "type": "boolean",
                 "ask": {
                     "en": "Configure the High Performance Backend?",
-                    "fr": "Configurer le Backend Hautes Performances  ?"
+                    "fr": "Configurer le Backend Hautes Performances ?"
                 },
                 "default": false
             }
