@@ -27,6 +27,7 @@ domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+use_notify_push=$(ynh_app_setting_get --app=$app --key=use_notify_push)
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 fpm_footprint=$(ynh_app_setting_get --app=$app --key=fpm_footprint)
@@ -129,7 +130,7 @@ ynh_restore_file --origin_path="$datadir" --not_mandatory
 mkdir -p "$datadir"
 
 #=================================================
-# CONFIGURE NOTIFY_PUSH APP
+# RESTORE THE NOTIFY_PUSH APP
 #=================================================
 
 if [ $use_notify_push -eq 1 ]
@@ -137,8 +138,9 @@ then
     mkdir -p /var/run/$app/
     chown $app: /var/run/$app/
 
-    ynh_add_systemd_config --service="${app}-notify-push"
+    ynh_restore_file --origin_path="/etc/systemd/system/${app}-notify-push.service"
 
+    systemctl enable $app.service --quiet
     ynh_systemd_action --service_name="${app}-notify-push" --action=restart
 fi
 

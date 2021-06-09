@@ -85,6 +85,7 @@ ynh_remove_fail2ban_config
 ynh_script_progression --message="Stopping and removing the systemd service..."
 
 ynh_remove_systemd_config --service="${app}-notify-push"
+ynh_secure_remove --file="/var/run/$app/"
 
 #=================================================
 # SPECIFIC REMOVE
