@@ -200,6 +200,12 @@ ynh_systemd_action --service_name=nginx --action=reload
 # CHECK IF NOTIFY_PUSH WORKS
 #=================================================
 
+# Define a function to execute commands with `occ`
+exec_occ() {
+  (cd "$final_path" && ynh_exec_as "$app" \
+      php${phpversion} occ --no-interaction --no-ansi "$@")
+}
+
 if [ $use_notify_push -eq 1 ]
 then
     ynh_systemd_action --service_name="${app}-notify-push" --action=restart
