@@ -6,14 +6,14 @@
         "en": "Online storage, file sharing platform and various other applications",
         "fr": "Stockage en ligne, plateforme de partage de fichiers et diverses autres applications"
     },
-    "version": "21.0.2~ynh1",
+    "version": "22.2.7~ynh1",
     "url": "https://nextcloud.com",
     "upstream": {
         "license": "AGPL-3.0",
         "website": "https://nextcloud.com",
         "demo": "https://demo.nextcloud.com/",
-        "admindoc": "https://docs.nextcloud.com/server/21/user_manual/en/",
-        "userdoc": "https://yunohost.org/en/app_nextcloud",
+        "admindoc": "https://docs.nextcloud.com/server/stable/admin_manual/",
+        "userdoc": "https://docs.nextcloud.com/server/latest/user_manual/en/",
         "code": "https://github.com/nextcloud/server"
     },
     "license": "AGPL-3.0",
@@ -22,7 +22,7 @@
         "email": "pierre@kayou.io"
     },
     "requirements": {
-        "yunohost": ">= 4.2"
+        "yunohost": ">= 4.3.0"
     },
     "multi_instance": true,
     "services": [
@@ -34,8 +34,7 @@
         "install" : [
             {
                 "name": "domain",
-                "type": "domain",
-                "example": "domain.org"
+                "type": "domain"
             },
             {
                 "name": "path",
@@ -45,8 +44,16 @@
             },
             {
                 "name": "admin",
-                "type": "user",
-                "example": "homer"
+                "type": "user"
+            },
+            {
+                "name": "is_public",
+                "type": "boolean",
+                "help": {
+                    "en": "If enabled, Nextcloud will be accessible by Nextcloud Desktop and by users without a YunoHost account. This can be changed later in the webadmin.",
+                    "fr": "Si cette case est cochée, Nextcloud sera accessible par Nextcloud Desktop et par les utilisateurs n’ayant pas de compte YunoHost. Vous pourrez changer dans la webadmin."
+                },
+                "default": true
             },
             {
                 "name": "user_home",

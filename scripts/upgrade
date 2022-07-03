@@ -51,6 +51,12 @@ if [ -z "$final_path" ]; then
 	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 fi
 
+# If datadir doesn't exist, create it
+if [ -z "$datadir" ]; then
+    datadir=/home/yunohost.app/$app
+    ynh_app_setting_set --app=$app --key=datadir --value=$datadir
+fi
+
 # Remove the option backup_core_only if it's in the settings.yml file
 ynh_app_setting_delete --app=$app --key=backup_core_only
 
@@ -71,10 +77,21 @@ if [ -z "$phpversion" ]; then
     phpversion="$YNH_PHP_VERSION"
 fi
 
-# If final_path doesn't exist, create it
+# If use_notify_push doesn't exist, create it
 if [ -z "$use_notify_push" ]; then
 	use_notify_push=0
     ynh_app_setting_set --app=$app --key=use_notify_push --value=$use_notify_push
+
+# Cleaning legacy permissions
+if ynh_legacy_permissions_exists; then
+    ynh_legacy_permissions_delete_all
+
+    ynh_app_setting_delete --app=$app --key=is_public
+fi
+
+# Create a permission if needed
+if ! ynh_permission_exists --permission="api"; then
+    ynh_permission_create --permission="api" --label="api" --url="re:$domain\/.well-known\/.*" --allowed="visitors" "all_users" --auth_header="false" --show_tile="false" --protected="true"
 fi
 
 #=================================================
@@ -112,7 +129,7 @@ ynh_abort_if_errors
 if ynh_legacy_permissions_exists; then
     ynh_legacy_permissions_delete_all
 
-    ynh_permission_create --permission="api" --label="api" --url="re:$(sed 's/[\.\-]/\%&/g' <<< $domain)/%.well%-known/.*" --allowed="visitors" "all_users" --auth_header="false" --show_tile="false" --protected="true"
+    ynh_permission_create --permission="api" --label="api" --url="re:$domain\/.well-known\/.*" --allowed="visitors" "all_users" --auth_header="false" --show_tile="false" --protected="true"
 fi
 
 if [ $use_notify_push -eq 1 ] && ! ynh_permission_exists --permission="hpb"
@@ -160,7 +177,7 @@ then
 fi
 
 # Recreate a dedicated PHP-FPM config
-ynh_add_fpm_config --phpversion=$phpversion --usage=$fpm_usage --footprint=$fpm_footprint --package="$extra_php_dependencies"
+ynh_add_fpm_config --phpversion=$phpversion --usage=$fpm_usage --footprint=$fpm_footprint
 
 # Delete existing ini configuration file (backward compatibility)
 if [ -f /etc/php/$phpversion/fpm/conf.d/20-$app.ini ]; then
@@ -217,7 +234,7 @@ exec_occ() {
         NEXTCLOUD_PHP_VERSION="7.0"
     fi
 (cd "$final_path" && ynh_exec_as "$app" \
-    php$NEXTCLOUD_PHP_VERSION occ --no-interaction --no-ansi "$@")
+    php$NEXTCLOUD_PHP_VERSION --define apc.enable_cli=1 occ --no-interaction --no-ansi "$@")
 }
 
 # Define a function to add an external storage
@@ -462,13 +479,16 @@ fi
 #=================================================
 
 # Fix app ownerships & permissions
-chown -R $app: "$final_path" "$datadir"
+chown -R $app:www-data "$final_path"
+chown -R $app: "$datadir"
 find $final_path/ -type f -print0 | xargs -0 chmod 0644
 find $final_path/ -type d -print0 | xargs -0 chmod 0755
 find $datadir/ -type f -print0 | xargs -0 chmod 0640
 find $datadir/ -type d -print0 | xargs -0 chmod 0750
 chmod 640 "$final_path/config/config.php"
 chmod 755 /home/yunohost.app
+chmod 750 $final_path
+
 if [ $use_notify_push -eq 1 ]
 then
     chmod 740 $final_path/apps/notify_push/bin/x86_64/notify_push
