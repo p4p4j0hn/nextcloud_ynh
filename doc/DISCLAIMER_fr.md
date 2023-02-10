@@ -1,5 +1,3 @@
-## Configuration
-
 ### Configurer l'intégration d'ONLYOFFICE
 
 #### Avec l'application Nextcloud (pas de support ARM, performances limitées)
@@ -17,17 +15,6 @@ Pour l'installer et la configurer :
 
 Pour  de meilleures performances et le support de ARM64, installez l'app YunoHost ONLYOFFICE, voir le tutoriel dans la [doc du paquet onlyoffice_ynh](https://github.com/YunoHost-Apps/onlyoffice_ynh/blob/master/README_fr.md#configuration-de-onlyoffice-server)
 
-
 #### Backend Hautes Performances
 
 Il s'agit d'une application sur nextcloud qui devrait accélérer l'instance, plus d'informations ici: https://github.com/nextcloud/notify_push#about
-
-## Caractéristiques spécifiques YunoHost
-
-En plus des fonctionnalités principales de Nextcloud, les fonctionnalités suivantes sont incluses dans ce package :
-
- * Intégration avec les utilisateurs YunoHost et le SSO - exemple, le bouton de déconnexion
- * Permet à un utilisateur d'être l'administrateur (choisi à l'installation)
- * Permet de multiples instances de cette application
- * Accès optionnel au répertoire home depuis les fichiers Nextcloud (à activer à l'installation, le partage étant activé par défaut)
- * Utilise l'adresse `/.well-known` pour la synchronisation CalDAV et CardDAV du domaine si aucun autre service ne l'utilise déjà - par exemple, baikal
