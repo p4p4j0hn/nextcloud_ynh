@@ -17,4 +17,4 @@ Pour  de meilleures performances et le support de ARM64, installez l'app YunoHos
 
 #### Backend Hautes Performances
 
-Il s'agit d'une application sur nextcloud qui devrait accélérer l'instance, plus d'informations ici: https://github.com/nextcloud/notify_push#about
+Il s'agit d'une application sur Nextcloud qui devrait accélérer l'instance, plus d'informations ici : https://github.com/nextcloud/notify_push#about
