@@ -28,6 +28,7 @@ is_public=$YNH_APP_ARG_IS_PUBLIC
 phpversion=$YNH_PHP_VERSION
 
 app=$YNH_APP_INSTANCE_NAME
+code_server=$YNH_APP_ARG_CODE_SERVER
 
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
@@ -55,6 +56,7 @@ ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=admin --value=$admin
 ynh_app_setting_set --app=$app --key=user_home --value=$user_home
+ynh_app_setting_set --app=$app --key=code_server --value=$code_server
 
 maintenance_mode=0
 ynh_app_setting_set --app=$app --key=maintenance_mode --value=$maintenance_mode
@@ -319,6 +321,17 @@ create_external_storage "/home/yunohost.multimedia/\$user" "Multimedia"
 create_external_storage "/home/yunohost.multimedia/share" "Shared multimedia"
 # Allow nextcloud to write into these directories
 ynh_multimedia_addaccess $app
+
+#=================================================
+# YUNOHOST MULTIMEDIA INTEGRATION
+#=================================================
+
+if [ $code_server -eq 1 ]
+then
+  ynh_script_progression --message="Installing Built-in CODE server" --weight=6
+
+  exec_occ app:install richdocumentscode
+fi
 
 #=================================================
 # GENERIC FINALIZATION

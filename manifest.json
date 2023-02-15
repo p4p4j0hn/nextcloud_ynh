@@ -64,6 +64,19 @@
                     "fr": "Accéder au dossier personnel des utilisateurs depuis Nextcloud ?"
                 },
                 "default": false
+            },
+            {
+            "name": "code_server",
+                "type": "boolean",
+                "ask": {
+                    "en": "Do you want to use Built-in CODE server?",
+                    "fr": "Voulez-vous utiliser Serveur CODE intégré ?"
+                },
+                "help": {
+                    "en": "The built-in code server is a Nextcloud app that allows you to run without additional server setup and provides all document editing features of Collabora Online.",
+                    "fr": "Le serveur de code intégré est une application Nextcloud qui vous permet de fonctionner sans configuration de serveur supplémentaire et fournit toutes les fonctions d’édition de documents de Collabora Online."
+                },
+                "default": false
             }
         ]
     }

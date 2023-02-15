@@ -23,6 +23,7 @@ final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_user=$db_name
 user_home=$(ynh_app_setting_get --app=$app --key=user_home)
+code_server=$(ynh_app_setting_get --app=$app --key=code_server)
 
 maintenance_mode=$(ynh_app_setting_get --app=$app --key=maintenance_mode)
 fpm_footprint=$(ynh_app_setting_get --app=$app --key=fpm_footprint)
@@ -88,6 +89,12 @@ fi
 if [ -z "$fpm_usage" ]; then
 	fpm_usage=medium
 	ynh_app_setting_set --app=$app --key=fpm_usage --value=$fpm_usage
+fi
+
+# If code_server doesn't exist, create it
+if [ -z "$code_server" ]; then
+    code_server=false
+    ynh_app_setting_set --app=$app --key=code_server --value=$code_server
 fi
 
 # Cleaning legacy permissions
