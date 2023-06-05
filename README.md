@@ -30,7 +30,7 @@ this package:
  * Serve `/.well-known` paths for CalDAV and CardDAV on the domain only if it's not already served - i.e. by Baïkal
 
 
-**Shipped version:** 25.0.3~ynh4
+**Shipped version:** 26.0.2~ynh2
 
 **Demo:** https://demo.nextcloud.com/
 
@@ -61,17 +61,6 @@ For better performance and ARM64 support, install ONLYOFFICE YunoHost App and co
 #### High Performance Backend
 
 This is an application on Nextcloud that should speed up the instance, more information here: https://github.com/nextcloud/notify_push#about
-
-## YunoHost specific features
-
-In addition to Nextcloud core features, the following are made available with
-this package:
-
- * Integrate with YunoHost users and SSO - i.e. logout button
- * Allow one user to be the administrator (set at the installation)
- * Allow multiple instances of this application
- * Optionally access the user home folder from Nextcloud files (set at the installation, the sharing is enabled by default)
- * Serve `/.well-known` paths for CalDAV and CardDAV on the domain only if it's not already served - i.e. by Baïkal
 
 ## Documentation and resources
 
