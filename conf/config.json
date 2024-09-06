@@ -48,7 +48,7 @@
       "ldap_groupfilter_objectclass": "posixGroup",
       "ldap_group_member_assoc_attribute": "memberUid",
       "ldap_host": "localhost",
-      "ldap_login_filter": "(&(|(objectclass=posixAccount))(uid=%uid)(permission=cn=__APP__.main,ou=permission,dc=yunohost,dc=org))",
+      "ldap_login_filter": "(&(&(|(objectclass=posixAccount))(|(memberof=cn=nextcloud_users,ou=groups,dc=yunohost,dc=org)))(uid=%uid)(permission=cn=nextcloud.main,ou=permission,dc=yunohost,dc=org))",
       "ldap_login_filter_mode": "0",
       "ldap_port": "389",
       "ldap_quota_attr": "userquota",
@@ -56,7 +56,7 @@
       "ldap_user_display_name": "cn",
       "ldap_user_filter_mode": "0",
       "ldap_userfilter_objectclass": "posixAccount",
-      "ldap_userlist_filter": "objectclass=posixAccount"
+      "ldap_userlist_filter": "(&(|(objectclass=posixAccount))(|(memberof=cn=nextcloud_users,ou=groups,dc=yunohost,dc=org)))"
     }
   }
 }
