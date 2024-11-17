@@ -5,7 +5,7 @@ name = "Nextcloud"
 description.en = "Online storage, file sharing platform and various other applications"
 description.fr = "Stockage en ligne, plateforme de partage de fichiers et diverses autres applications"
 
-version = "29.0.5~ynh1"
+version = "29.0.9~ynh1"
 
 maintainers = ["kay0u"]
 
@@ -19,7 +19,7 @@ code = "https://github.com/nextcloud/server"
 cpe = "cpe:2.3:a:nextcloud:nextcloud"
 
 [integration]
-yunohost = ">= 11.2.27"
+yunohost = ">= 11.2.30"
 architectures = ["amd64", "arm64", "armhf"]
 multi_instance = true
 
@@ -49,24 +49,18 @@ ram.runtime = "512M"
     default = "visitors"
 
     [install.user_home]
-    ask.en = "Access the users home folder from Nextcloud?"
-    ask.fr = "Accéder au dossier personnel des utilisateurs depuis Nextcloud ?"
+    ask.en = "Access the users home folder from Nextcloud"
+    ask.fr = "Accéder au dossier personnel des utilisateurs depuis Nextcloud"
     type = "boolean"
     default = false
-
-    [install.system_addressbook_exposed]
-    ask.en = "Should there be a system address book listing all users, accessible by all users?"
-    ask.fr = "Devrait-il y avoir un carnet d'adresses système listant tous les comptes, accessible par tous les comptes ?"
-    type = "boolean"
-    default = true
 
 [resources]
 
     [resources.sources]
 
         [resources.sources.main]
-        url = 'https://download.nextcloud.com/server/releases/nextcloud-29.0.5.tar.bz2'
-        sha256 = 'c7fe9c61e5ec30a5e599e8f152a1825df684d30e899db0caa8868c8d67b53a2c'
+        url = 'https://download.nextcloud.com/server/releases/nextcloud-29.0.9.tar.bz2'
+        sha256 = 'f14e8f497c6d6b2b0da5cd0ad116f0c99f720c4eb05e64432fbd86e09cfb4141'
 
         [resources.sources.28]
         url = 'https://download.nextcloud.com/server/releases/nextcloud-28.0.8.tar.bz2'
