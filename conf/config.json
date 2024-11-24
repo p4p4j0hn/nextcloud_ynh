@@ -10,7 +10,7 @@
       "port": "6379",
       "timeout": "0.0",
       "password": ""
-     },
+    },
     "hashing_default_password": true,
     "localstorage.allowsymlinks": true,
     "simpleSignUpLink.shown": false,
@@ -30,8 +30,7 @@
         "verify_peer": false,
         "verify_peer_name": false
       }
-    },
-    "trusted_proxies": [ "127.0.0.1", "::1" ]
+    }
   },
   "apps": {
     "user_ldap": {
