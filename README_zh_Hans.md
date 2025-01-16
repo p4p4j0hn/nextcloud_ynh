@@ -5,26 +5,46 @@
 
 # YunoHost 上的 Nextcloud
 
-[![集成程度](https://dash.yunohost.org/integration/nextcloud.svg)](https://ci-apps.yunohost.org/ci/apps/nextcloud/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/nextcloud.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/nextcloud.maintain.svg)
+[![集成程度](https://apps.yunohost.org/badge/integration/nextcloud)](https://ci-apps.yunohost.org/ci/apps/nextcloud/)
+![工作状态](https://apps.yunohost.org/badge/state/nextcloud)
+![维护状态](https://apps.yunohost.org/badge/maintained/nextcloud)
 
 [![使用 YunoHost 安装 Nextcloud](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=nextcloud)
 
-*[阅读此 README 的其它语言版本。](./ALL_README.md)*
+_[阅读此 README 的其它语言版本。](./ALL_README.md)_
 
-> *通过此软件包，您可以在 YunoHost 服务器上快速、简单地安装 Nextcloud。*  
-> *如果您还没有 YunoHost，请参阅[指南](https://yunohost.org/install)了解如何安装它。*
+> _通过此软件包，您可以在 YunoHost 服务器上快速、简单地安装 Nextcloud。_  
+> _如果您还没有 YunoHost，请参阅[指南](https://yunohost.org/install)了解如何安装它。_
 
 ## 概况
 
-Nextcloud lets you access and synchronize data, files, contacts and calendars between different devices (PCs or mobiles), or share them with other people (with or without accounts), and also offers advanced communication and collaborative working features. Nextcloud features its own application mechanism (see also [Nextcloud's app store](https://apps.nextcloud.com/)) for specific functionalities. 
+Nextcloud Hub is a fully open-source on-premises content collaboration platform. Teams access, share and edit their documents, chat and participate in video calls and manage their mail and calendar and projects across mobile, desktop and web interfaces.
 
-In the context of YunoHost, Nextcloud integrates with the SSO/User Portal (YunoHost accounts are automatically connected to Nextcloud).
+### YunoHost-specific features
 
-The `/.well-known` address will be automatically configured for CalDAV and CardDAV synchronization if no other service such as Baïkal is already using it.
+In addition to Nextcloud core features, the following are made available with this package:
 
-The YunoHost catalog has two collaborative office suites, [OnlyOffice](https://github.com/YunoHost-Apps/onlyoffice_ynh) and [Collabora](https://github.com/YunoHost-Apps/collabora_ynh), which can be integrated with Nextcloud.
+- Integrate with YunoHost users and SSO - i.e. logout button
+- Allow one user to be the administrator (set at the installation)
+- Allow multiple instances of this application
+- Optionally access the user home folder from Nextcloud files (set at the installation, the sharing is enabled by default)
+- Serve `/.well-known` paths for CalDAV and CardDAV on the domain only if it's not already served - i.e. by Baïkal
 
-**分发版本：** 29.0.9~ynh1
+### Oldstable branch
+
+This branch is following old stable release because nextcloud first release are often not totally stable.
+
+Please send your pull request to the [oldstable branch](https://github.com/YunoHost-Apps/nextcloud_ynh/tree/oldstable).
+
+To try the oldstable branch, please proceed like that.
+
+```
+sudo yunohost app install https://github.com/YunoHost-Apps/nextcloud_ynh/tree/oldstable --debug
+or
+sudo yunohost app upgrade nextcloud -u https://github.com/YunoHost-Apps/nextcloud_ynh/tree/oldstable --debug
+```
+
+**分发版本：** 29.0.10~ynh1
 
 **演示：** <https://demo.nextcloud.com/>
 
