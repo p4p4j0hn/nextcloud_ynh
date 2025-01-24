@@ -108,9 +108,6 @@ exec_occ config:system:set mysql.utf8mb4 --type boolean --value="true"
 # move the logs from the data_dir to the standard /var/log
 exec_occ config:system:set logfile --value="/var/log/$app/nextcloud.log"
 
-# Ensure that UpdateNotification app is disabled
-exec_occ app:disable updatenotification
-
 # Enable LDAP plugin
 exec_occ app:enable user_ldap
 exec_occ ldap:create-empty-config
