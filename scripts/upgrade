@@ -237,7 +237,7 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]; then
   fi
 
   # Ensure that UpdateNotification app is disabled
-  exec_occ app:disable updatenotification
+#   exec_occ app:disable updatenotification
 
   # Enable LDAP plugin
   exec_occ app:enable user_ldap
