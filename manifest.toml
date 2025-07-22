@@ -5,7 +5,7 @@ name = "Nextcloud"
 description.en = "Online storage, file sharing platform and various other applications"
 description.fr = "Stockage en ligne, plateforme de partage de fichiers et diverses autres applications"
 
-version = "30.0.13~ynh1"
+version = "31.0.7~ynh1"
 
 maintainers = ["kay0u"]
 
@@ -49,16 +49,22 @@ ram.runtime = "512M"
     default = "visitors"
 
     [install.user_home]
-    ask.en = "Access the users home folder from Nextcloud"
-    ask.fr = "Accéder au dossier personnel des utilisateurs depuis Nextcloud"
+    ask.en = "Add the users' home directory in Nextcloud?"
+    ask.fr = "Ajouter le dossier personnel des utilisateurs à Nextcloud ?"
+    help.en = "If enabled, each `/home/$user` directory will be added to their respective user's Nextcloud."
+    help.fr = "Si activé, le dossier `/home/$user` de chaque compte lui sera ajouté dans Nextcloud."
     type = "boolean"
     default = false
-
+    
 [resources]
 
     [resources.sources]
 
         [resources.sources.main]
+        url = 'https://download.nextcloud.com/server/releases/nextcloud-31.0.7.tar.bz2'
+        sha256 = '002a5d03ae05a7f0c3056947d6da0b79a44d3d720f5728fe5155a0c5a3b4ec69'
+
+        [resources.sources.30]
         url = 'https://download.nextcloud.com/server/releases/nextcloud-30.0.13.tar.bz2'
         sha256 = 'be2326a3af3d6072b4f14cdad393b9637aa3dc40caf56fd38175eea3a8ff8f86'
         prefetch = false
